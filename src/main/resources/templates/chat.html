@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Chat WebSocket</title>
 <!--    <script src="../js/sockjs-0.3.4.js"></script>-->
@@ -20,7 +20,7 @@
         }
 
         function connect() {
-            var socket = new SockJS('/chat');
+            var socket = new SockJS('/ws');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
                 setConnected(true);

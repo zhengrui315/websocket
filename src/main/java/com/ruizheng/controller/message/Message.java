@@ -1,4 +1,4 @@
-package com.ruizheng;
+package com.ruizheng.controller.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
