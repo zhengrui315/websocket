@@ -1,4 +1,4 @@
-package com.ruizheng.controller;
+package com.ruizheng.controller.message;
 
 import lombok.*;
 
@@ -16,6 +16,4 @@ public class Message {
     public enum MessageType {
         CHAT, JOIN, LEAVE
     }
-
-
 }

@@ -1,6 +1,8 @@
 package com.ruizheng.controller;
 
 
+import com.ruizheng.controller.message.AddUserMessage;
+import com.ruizheng.controller.message.Message;
 import com.ruizheng.persistence.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,11 @@ public class ChatController {
         return newMessage;
     }
 
-    @MessageMapping("/chat/addUser")
+    @MessageMapping("/addUser")
     @SendTo("topic/messages")
-    public Message addUser(Message message) {
-        log.info("Adding new user: {}", message.getSender());
-        message.setType(Message.MessageType.JOIN);
+    public AddUserMessage addUser(AddUserMessage message) {
+        log.info("Adding new user: {}", message.getName());
+        userService.addUser(message.getName(), message.getAddress());
         return message;
     }
 

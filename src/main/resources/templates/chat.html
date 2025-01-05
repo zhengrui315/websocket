@@ -41,11 +41,17 @@
             console.log("Disconnected");
         }
 
+        function addUser() {
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            stompClient.send("/app/addUser", {}, JSON.stringify({'name':name, 'address':address}));
+        }
+
         function sendMessage() {
-            var from = document.getElementById('from').value;
+            var name = document.getElementById('name').value;
             var text = document.getElementById('text').value;
             stompClient.send("/app/sendMessage", {},
-              JSON.stringify({'sender':from, 'content':text}));
+              JSON.stringify({'sender':name, 'content':text}));
         }
 
         function showMessageOutput(messageOutput) {
@@ -62,14 +68,16 @@
 <body onload="disconnect()">
 <div>
     <div>
-        <input type="text" id="from" placeholder="Choose a nickname"/>
-    </div>
-    <br />
-    <div>
         <button id="connect" onclick="connect();">Connect</button>
         <button id="disconnect" disabled="disabled" onclick="disconnect();">
             Disconnect
         </button>
+    </div>
+    <br />
+    <div>
+        <input type="text" id="name" placeholder="Choose a name"/>
+        <input type="text" id="address" placeholder="Address"/>
+        <button id="addUser" onclick="addUser();">Sign Up or Log In</button>
     </div>
     <br />
     <div id="conversationDiv">
