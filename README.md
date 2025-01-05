@@ -5,7 +5,7 @@ This repository implements a chatbot using SpringBoot that supports sending mess
 ### Run the Application
 
 There are multiple ways to start a SpringBoot application.
-#### Maven
+#### Maven in local machine
 Enter the `chat` directory and run the following commands
 ```declarative
 mvn clean package # re-build the jar file
@@ -29,5 +29,23 @@ the port 8080 on the host machine is mapped to the port 8080 inside the containe
 
 
 #### Docker compose
+Start all services
+```declarative
+docker compose up
+```
+verify the containers by `docker ps`. To enter into the bash environment of a specific container, run `docker exec -it mysql_db bash`. 
+Now the app is already running in a docker container and the endpoints can be accessed at the exposed port 8080. 
+
+To start the command in detached mode, add `-d` flag at the end. To shut down the containers, run `docker compose down`. 
+
+A MySQL service is included in `docker-compose.yml` for durable data storage. A docker volume is created which is mirrored in the host machine. List the volumes by
+```declarative
+docker volume ls
+```
+and then check the detail of the volume by 
+```declarative
+docker volume inspect chat_db_data
+```
+here `chat_db_data` is the volume name defined in `docker-compose.yml`. 
 
 
