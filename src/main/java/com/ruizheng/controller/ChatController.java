@@ -1,7 +1,9 @@
-package com.ruizheng;
+package com.ruizheng.controller;
 
 
+import com.ruizheng.persistence.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import java.util.Date;
 @Slf4j
 @Controller
 public class ChatController {
+    @Autowired
+    UserService userService;
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/messages")
