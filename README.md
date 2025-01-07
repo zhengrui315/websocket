@@ -54,6 +54,22 @@ docker volume inspect chat_db_data
 here `chat_db_data` is the volume name defined in `docker-compose.yml`. 
 
 
+## Launch to GCP
+1. Authorization with GCP
+```declarative
+gcloud services enable containerregistry.googleapis.com  # enable GCR API
+gcloud auth configure-docker gcr.io  # authenticate Docker with GCR
+```
+2. Tag the SpringBoot app image
+```declarative
+docker tag chat-app gcr.io/ruizheng-project1/chat-app
+```
+`gcr.io` is the multi-region endpoint. 
+3. Push the docker image to GCR
+```declarative
+docker push gcr.io/ruizheng-project1/chat-app
+```
+
 
 ## Plan
 - [x] Broadcast messages to all users.
@@ -62,4 +78,7 @@ here `chat_db_data` is the volume name defined in `docker-compose.yml`.
 - [ ] Launch to GCP platform.
 
 
+
+## References
+1. Set up Cloud DNS: https://cloud.google.com/dns/docs/tutorials/create-domain-tutorial#console_1
 
